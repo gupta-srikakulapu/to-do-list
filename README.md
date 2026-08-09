@@ -10,7 +10,7 @@
 ---
 
 ## 🔗 Live Demo & Portfolio Link
-- **Live Hosted URL**: `https://<YOUR_GITHUB_USERNAME>.github.io/to-do-list/` *(Replace with your live URL after deploying)*
+- **Live Hosted URL**: `https://gupta-srikakulapu.github.io/to-do-list/` 
 
 ---
 
