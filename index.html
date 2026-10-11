@@ -60,11 +60,40 @@
             </svg>
             <span>New Task</span>
           </button>
+
+          <!-- User Authentication & Profile Section -->
+          <div id="userProfileSection" class="user-profile-section hidden">
+            <div class="user-avatar-badge" id="userAvatarBadge" title="User Profile">
+              <span id="userAvatarInitial">U</span>
+            </div>
+            <div class="user-meta-header">
+              <span class="user-display-name" id="userDisplayName">User</span>
+            </div>
+            <button id="logoutBtn" class="icon-btn" title="Sign Out / Logout" aria-label="Sign Out">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>
+              </svg>
+            </button>
+          </div>
+
+          <button id="openAuthModalBtn" class="btn btn-secondary hidden" title="Sign In or Register">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span>Sign In</span>
+          </button>
         </div>
+      </div>
+
+      <!-- Welcome Banner -->
+      <div class="welcome-banner" id="userWelcomeBanner">
+        <span class="welcome-tag">Dashboard</span>
+        <h2 class="welcome-heading">Welcome, <span id="welcomeUserName" class="user-name-highlight">User</span> 👋</h2>
       </div>
 
       <!-- Dashboard Progress Bar & Stats -->
       <div class="stats-card">
+
         <div class="progress-info">
           <div class="progress-text">
             <span class="progress-title">Task Completion</span>
@@ -268,8 +297,82 @@
     </div>
   </div>
 
+  <!-- Authentication Modal (Login & Register) -->
+  <div id="authModal" class="modal-backdrop hidden" aria-hidden="true" role="dialog" aria-labelledby="authModalTitle">
+    <div class="modal-card auth-modal-card">
+      <div class="modal-header">
+        <div>
+          <h2 id="authModalTitle">Welcome to TaskPulse</h2>
+          <p class="modal-subtitle" id="authModalSubtitle">Sign in to sync your tasks securely in MongoDB</p>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <!-- Auth Feedback Alert Banner -->
+        <div id="authAlert" class="auth-alert hidden"></div>
+
+        <!-- Login Form -->
+        <form id="loginForm" class="auth-form">
+          <div class="form-group">
+            <label for="loginEmail" class="form-label">Email Address <span class="required">*</span></label>
+            <input type="email" id="loginEmail" class="form-input" placeholder="name@example.com" required autocomplete="email">
+          </div>
+
+          <div class="form-group">
+            <label for="loginPassword" class="form-label">Password <span class="required">*</span></label>
+            <input type="password" id="loginPassword" class="form-input" placeholder="••••••••" required autocomplete="current-password">
+          </div>
+
+          <div class="auth-actions">
+            <button type="submit" class="btn btn-primary btn-block" id="loginSubmitBtn">
+              <span>Sign In</span>
+            </button>
+          </div>
+
+          <div class="auth-switch-text">
+            Don't have an account? <button type="button" class="link-btn" id="switchToRegisterBtn">Create an account</button>
+          </div>
+        </form>
+
+        <!-- Register Form -->
+        <form id="registerForm" class="auth-form hidden">
+          <div class="form-group">
+            <label for="registerName" class="form-label">Full Name <span class="required">*</span></label>
+            <input type="text" id="registerName" class="form-input" placeholder="Your full name" required autocomplete="name">
+          </div>
+
+          <div class="form-group">
+            <label for="registerEmail" class="form-label">Email Address <span class="required">*</span></label>
+            <input type="email" id="registerEmail" class="form-input" placeholder="name@example.com" required autocomplete="email">
+          </div>
+
+          <div class="form-group">
+            <label for="registerPassword" class="form-label">Password <span class="required">*</span></label>
+            <input type="password" id="registerPassword" class="form-input" placeholder="At least 6 characters" minlength="6" required autocomplete="new-password">
+          </div>
+
+          <div class="form-group">
+            <label for="registerConfirmPassword" class="form-label">Confirm Password <span class="required">*</span></label>
+            <input type="password" id="registerConfirmPassword" class="form-input" placeholder="Re-enter password" minlength="6" required autocomplete="new-password">
+          </div>
+
+          <div class="auth-actions">
+            <button type="submit" class="btn btn-primary btn-block" id="registerSubmitBtn">
+              <span>Create Account</span>
+            </button>
+          </div>
+
+          <div class="auth-switch-text">
+            Already have an account? <button type="button" class="link-btn" id="switchToLoginBtn">Sign in</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <!-- Toast Notification Container -->
   <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
 
   <script src="app.js"></script>
 </body>
