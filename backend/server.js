@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
+const path = require('path');
 const cookieParser = require('cookie-parser');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
@@ -14,7 +15,11 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Security & Body Parser Middleware
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: false
+  })
+);
 app.use(
   cors({
     origin: true,
@@ -24,6 +29,10 @@ app.use(
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Serve static frontend files from root directory
+app.use(express.static(path.join(__dirname, '..')));
+
 
 // Connect to MongoDB
 connectDB();
